@@ -1,0 +1,12 @@
+<!-- TODO: trasladar el diseño de stitch_remix_of_spartan_strength_agoge/login_molon_labe/code.html -->
+<div class="login-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input formControlName="email" type="email" placeholder="Email" />
+    <input formControlName="password" type="password" placeholder="Contraseña" />
+    <p *ngIf="error" class="error">{{ error }}</p>
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Ingresando...' : 'ENTRAR A LA FALANGE' }}
+    </button>
+  </form>
+  <button type="button" (click)="onGoogleLogin()">INGRESAR CON GOOGLE</button>
+</div>
