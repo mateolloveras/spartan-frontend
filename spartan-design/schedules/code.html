@@ -1,0 +1,448 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MOLON LABE | Battle Schedule</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;600;700&amp;family=Space+Grotesk:wght@300;400;500;700&amp;family=Chivo:wght@300;400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Greek Meander Divider */
+        .meander-divider {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10h10v6h20v-12h-15v4h10v4h-15v-8h25v16H0v-10z' fill='%235e3f3a' fill-opacity='0.4'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            height: 20px;
+            width: 100%;
+        }
+
+        .spear-divider {
+            position: relative;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #5e3f3a 20%, #5e3f3a 80%, transparent);
+        }
+        .spear-divider::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            border-left: 10px solid #5e3f3a;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        .stone-texture {
+            background-color: #131313;
+            background-image: radial-gradient(circle at 50% 0%, rgba(204, 0, 0, 0.05) 0%, transparent 70%),
+                              url("https://www.transparenttextures.com/patterns/dark-matter.png");
+        }
+
+        .gold-inlay {
+            border: 1px solid #c69302;
+            box-shadow: inset 0 0 10px rgba(198, 147, 2, 0.1);
+        }
+
+        .battle-slot:hover {
+            background: linear-gradient(135deg, rgba(204, 0, 0, 0.2) 0%, transparent 100%);
+            border-color: #ffb4a8;
+        }
+
+        .active-day-column {
+            background: rgba(198, 147, 2, 0.03);
+            border-left: 1px solid rgba(198, 147, 2, 0.3);
+            border-right: 1px solid rgba(198, 147, 2, 0.3);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0e0e0e; }
+        ::-webkit-scrollbar-thumb { background: #5e3f3a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ae8882; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-tint": "#ffb4a8",
+                "tertiary-fixed": "#ffdad4",
+                "on-error": "#690005",
+                "on-surface-variant": "#e8bdb6",
+                "tertiary-fixed-dim": "#ffb4a8",
+                "surface": "#131313",
+                "on-primary": "#690000",
+                "surface-container-high": "#2a2a2a",
+                "surface-variant": "#353534",
+                "tertiary-container": "#bd2d1f",
+                "primary-fixed-dim": "#ffb4a8",
+                "error-container": "#93000a",
+                "on-tertiary-container": "#ffdad4",
+                "tertiary": "#ffb4a8",
+                "on-primary-fixed": "#410000",
+                "secondary-container": "#c69302",
+                "on-tertiary": "#690000",
+                "outline": "#ae8882",
+                "error": "#ffb4ab",
+                "on-primary-container": "#ffdad4",
+                "on-error-container": "#ffdad6",
+                "on-secondary": "#402d00",
+                "on-secondary-container": "#433000",
+                "surface-container-highest": "#353534",
+                "background": "#131313",
+                "on-background": "#e5e2e1",
+                "surface-bright": "#3a3939",
+                "surface-container": "#201f1f",
+                "outline-variant": "#5e3f3a",
+                "on-surface": "#e5e2e1",
+                "inverse-on-surface": "#313030",
+                "secondary-fixed-dim": "#f6be3b",
+                "surface-container-low": "#1c1b1b",
+                "secondary-fixed": "#ffdea0",
+                "on-secondary-fixed-variant": "#5c4300",
+                "on-tertiary-fixed-variant": "#920703",
+                "on-tertiary-fixed": "#410000",
+                "surface-container-lowest": "#0e0e0e",
+                "on-primary-fixed-variant": "#930000",
+                "inverse-surface": "#e5e2e1",
+                "primary-container": "#cc0000",
+                "on-secondary-fixed": "#261900",
+                "primary": "#ffb4a8",
+                "inverse-primary": "#c00000",
+                "surface-dim": "#131313",
+                "primary-fixed": "#ffdad4",
+                "secondary": "#f6be3b"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "unit": "8px",
+                "max-width": "1440px",
+                "gutter": "24px",
+                "margin-desktop": "64px",
+                "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                "stat-lg": ["Space Grotesk"],
+                "label-caps": ["Space Grotesk"],
+                "headline-md": ["Libre Caslon Text"],
+                "headline-xl": ["Libre Caslon Text"],
+                "body-md": ["Chivo"],
+                "headline-lg-mobile": ["Libre Caslon Text"],
+                "body-lg": ["Chivo"],
+                "headline-lg": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                "stat-lg": ["40px", {"lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "label-caps": ["14px", {"lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background stone-texture font-body-md min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full w-64 py-8 z-40 bg-surface-container border-r border-outline-variant shadow-2xl">
+<div class="px-6 mb-12">
+<h1 class="font-headline-md text-headline-md text-primary tracking-widest">STRATEGOS</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70">LEONIDAS I</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary transition-all duration-300 mx-2 my-1" href="#">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+<span class="font-label-caps text-label-caps">Command</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 bg-primary-container text-on-primary-container rounded-lg mx-2 my-1 shadow-lg" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps">Phalanx</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary transition-all duration-300 mx-2 my-1" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-caps text-label-caps">Scrolls</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary transition-all duration-300 mx-2 my-1" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-caps text-label-caps">The Forge</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary transition-all duration-300 mx-2 my-1" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-label-caps text-label-caps">Council</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full py-4 bg-gradient-to-b from-[#CC0000] to-[#8B0000] border-t border-[#DAA520] font-label-caps text-label-caps tracking-widest hover:shadow-[0_0_15px_rgba(204,0,0,0.5)] transition-all uppercase mb-8">
+                LOG WORKOUT
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-4 px-6 py-2 text-on-surface-variant hover:text-primary transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-2 text-on-surface-variant hover:text-primary transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps">Exit</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-64 p-margin-mobile md:p-margin-desktop min-h-screen">
+<!-- Header -->
+<header class="mb-12">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h2 class="font-headline-xl text-headline-xl text-on-background uppercase">Battle Schedule</h2>
+<p class="text-primary font-label-caps tracking-[0.3em] mt-2">PREPARE FOR GLORY</p>
+</div>
+<div class="hidden md:flex items-center gap-4 text-secondary">
+<span class="material-symbols-outlined text-4xl" data-icon="calendar_month">calendar_month</span>
+<div class="text-right">
+<p class="font-label-caps text-label-caps">YEAR 480 BC</p>
+<p class="font-headline-md text-headline-md leading-none">WEEK OF THERMOPYLAE</p>
+</div>
+</div>
+</div>
+<div class="meander-divider"></div>
+</header>
+<!-- Schedule Grid Container -->
+<section class="bg-surface-container-low gold-inlay rounded-xl overflow-hidden shadow-2xl">
+<!-- Grid Header (Days) -->
+<div class="grid grid-cols-8 border-b border-outline-variant bg-surface-container-high">
+<div class="p-4 border-r border-outline-variant flex items-center justify-center bg-surface-container-highest">
+<span class="material-symbols-outlined text-outline" data-icon="schedule">schedule</span>
+</div>
+<!-- Mon-Sun Labels -->
+<div class="p-4 border-r border-outline-variant text-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant">MON</p>
+</div>
+<div class="p-4 border-r border-outline-variant text-center active-day-column border-b-2 border-b-secondary">
+<p class="font-label-caps text-label-caps text-secondary">TUE</p>
+</div>
+<div class="p-4 border-r border-outline-variant text-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant">WED</p>
+</div>
+<div class="p-4 border-r border-outline-variant text-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant">THU</p>
+</div>
+<div class="p-4 border-r border-outline-variant text-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant">FRI</p>
+</div>
+<div class="p-4 border-r border-outline-variant text-center bg-surface-container-highest/30">
+<p class="font-label-caps text-label-caps text-tertiary">SAT</p>
+</div>
+<div class="p-4 text-center bg-surface-container-highest/30">
+<p class="font-label-caps text-label-caps text-tertiary">SUN</p>
+</div>
+</div>
+<!-- Scrollable Body -->
+<div class="overflow-y-auto max-h-[800px]">
+<!-- Time Rows 06:00 to 23:00 -->
+<div class="grid grid-cols-8">
+<!-- Generating rows dynamically via script or logic; here manually creating structure for visualization -->
+<!-- 06:00 Row -->
+<div class="flex flex-col border-r border-b border-outline-variant bg-surface-container-highest p-4 justify-center items-center">
+<span class="font-label-caps text-xs text-outline">06:00</span>
+</div>
+<!-- Mon Slot -->
+<div class="border-r border-b border-outline-variant p-2 group">
+<div class="battle-slot h-full rounded border border-transparent transition-all p-2 cursor-pointer relative overflow-hidden group-hover:bg-primary/5">
+<p class="text-[10px] font-label-caps text-primary mb-1">PHALANX</p>
+<p class="text-xs font-bold text-on-surface truncate">Shield Drill</p>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform"></div>
+</div>
+</div>
+<!-- Tue Slot (Current) -->
+<div class="border-r border-b border-outline-variant p-2 active-day-column">
+<div class="bg-primary-container/20 border border-secondary rounded p-2 cursor-pointer shadow-lg shadow-primary/10">
+<p class="text-[10px] font-label-caps text-secondary mb-1">STRENGTH</p>
+<p class="text-xs font-bold text-on-surface">Great Sword</p>
+</div>
+</div>
+<!-- Wed-Fri (Empty example) -->
+<div class="border-r border-b border-outline-variant p-2"></div>
+<div class="border-r border-b border-outline-variant p-2"></div>
+<div class="border-r border-b border-outline-variant p-2">
+<div class="battle-slot h-full rounded border border-outline-variant/30 p-2 cursor-pointer">
+<p class="text-[10px] font-label-caps text-primary mb-1">PHALANX</p>
+<p class="text-xs font-bold text-on-surface">Endurance</p>
+</div>
+</div>
+<!-- Sat-Sun (6am is closed, let's skip to 10am logic below) -->
+<div class="border-r border-b border-outline-variant bg-surface-container-highest/20 p-2"></div>
+<div class="border-b border-outline-variant bg-surface-container-highest/20 p-2"></div>
+<!-- 08:00 Row -->
+<div class="flex flex-col border-r border-b border-outline-variant bg-surface-container-highest p-4 justify-center items-center">
+<span class="font-label-caps text-xs text-outline">08:00</span>
+</div>
+<div class="border-r border-b border-outline-variant p-2"></div>
+<div class="border-r border-b border-outline-variant p-2 active-day-column"></div>
+<div class="border-r border-b border-outline-variant p-2">
+<div class="bg-surface-variant/50 border border-outline-variant rounded p-2">
+<p class="text-[10px] font-label-caps text-outline mb-1">ELITE</p>
+<p class="text-xs font-bold text-on-surface-variant">Immortal Defeat</p>
+</div>
+</div>
+<div class="border-r border-b border-outline-variant p-2"></div>
+<div class="border-r border-b border-outline-variant p-2"></div>
+<div class="border-r border-b border-outline-variant bg-surface-container-highest/20 p-2"></div>
+<div class="border-b border-outline-variant bg-surface-container-highest/20 p-2"></div>
+<!-- 10:00 Row (Weekend Starts) -->
+<div class="flex flex-col border-r border-b border-outline-variant bg-surface-container-highest p-4 justify-center items-center">
+<span class="font-label-caps text-xs text-outline">10:00</span>
+</div>
+<div class="border-r border-b border-outline-variant p-2"></div>
+<div class="border-r border-b border-outline-variant p-2 active-day-column"></div>
+<div class="border-r border-b border-outline-variant p-2"></div>
+<div class="border-r border-b border-outline-variant p-2"></div>
+<div class="border-r border-b border-outline-variant p-2"></div>
+<!-- Weekend -->
+<div class="border-r border-b border-outline-variant bg-surface-container-highest/20 p-2">
+<div class="bg-tertiary-container/20 border border-tertiary rounded p-2">
+<p class="text-[10px] font-label-caps text-tertiary mb-1">RECOVERY</p>
+<p class="text-xs font-bold text-on-surface">Hot Oil Bath</p>
+</div>
+</div>
+<div class="border-b border-outline-variant bg-surface-container-highest/20 p-2">
+<div class="bg-tertiary-container/20 border border-tertiary rounded p-2">
+<p class="text-[10px] font-label-caps text-tertiary mb-1">MIND</p>
+<p class="text-xs font-bold text-on-surface">Stoic Philosophy</p>
+</div>
+</div>
+<!-- 18:00 Row (Prime Time) -->
+<div class="flex flex-col border-r border-b border-outline-variant bg-surface-container-highest p-4 justify-center items-center">
+<span class="font-label-caps text-xs text-outline">18:00</span>
+</div>
+<div class="border-r border-b border-outline-variant p-2 active-day-column">
+<div class="bg-gradient-to-br from-primary-container to-tertiary-container border border-primary rounded p-2 shadow-xl shadow-primary/20 scale-105 z-10 relative">
+<p class="text-[10px] font-label-caps text-white mb-1">LEGENDARY</p>
+<p class="text-xs font-bold text-white">The Hot Gates (HIIT)</p>
+</div>
+</div>
+<div class="border-r border-b border-outline-variant p-2 active-day-column">
+<div class="bg-surface-variant/80 border border-outline rounded p-2">
+<p class="text-[10px] font-label-caps text-on-surface-variant mb-1">COMBAT</p>
+<p class="text-xs font-bold text-on-surface">Pankration</p>
+</div>
+</div>
+<div class="border-r border-b border-outline-variant p-2">
+<div class="bg-surface-variant/80 border border-outline rounded p-2">
+<p class="text-[10px] font-label-caps text-on-surface-variant mb-1">COMBAT</p>
+<p class="text-xs font-bold text-on-surface">Spear Mastery</p>
+</div>
+</div>
+<div class="border-r border-b border-outline-variant p-2"></div>
+<div class="border-r border-b border-outline-variant p-2"></div>
+<!-- Weekend (Ends early 19:00, but 18:00 is active) -->
+<div class="border-r border-b border-outline-variant bg-surface-container-highest/20 p-2"></div>
+<div class="border-b border-outline-variant bg-surface-container-highest/20 p-2"></div>
+</div>
+</div>
+</section>
+<!-- Legend and Stats -->
+<div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 bg-surface-container gold-inlay p-6 rounded-lg flex flex-col justify-center">
+<h4 class="font-label-caps text-label-caps text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+                    TACTICAL LEGEND
+                 </h4>
+<div class="flex flex-wrap gap-6">
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 bg-primary rounded"></div>
+<span class="text-sm font-label-caps">Phalanx Drills</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 bg-secondary rounded"></div>
+<span class="text-sm font-label-caps">Strength Forge</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 bg-tertiary rounded"></div>
+<span class="text-sm font-label-caps">Rest &amp; Recovery</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 border border-outline rounded"></div>
+<span class="text-sm font-label-caps">Open Grounds</span>
+</div>
+</div>
+<div class="spear-divider my-6"></div>
+<p class="text-sm text-on-surface-variant italic">"A Spartan who does not train at 6:00 is not a Spartan at all. Victory is carved in the early hours." — Commander Leonidas</p>
+</div>
+<!-- Promotion Card -->
+<div class="bg-surface-container-high rounded-lg p-1 relative overflow-hidden group border border-outline-variant">
+<img alt="Gym Forge" class="w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" data-alt="A cinematic, low-angle shot of a heavy iron gym in a stone temple. Dramatic shadows and golden torchlight illuminate rusted kettlebells and leather medicine balls. The atmosphere is ancient, powerful, and intense, with a dark slate floor and blood-red banners hanging in the background. High contrast fitness photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk3_5D1JyWxJWuREkKsrCu-n_hriupVUU4em7HHVzaEsYA18rIrCTSFEYYsW4EoIfHt16S_n8Gxy_2uW23mOXfa4AfViOMxbTjd0p0GIBNshfnWT761ljTi7CinNnC4PmHALRMFCmOwX5iAGfOyPMatjvGT1yJ4UKvCtuLZ8lZoI-gxp7xsoE296iLqYdtchMckOaDyU9fncB1TjeguGDBB-Ne2130kPB15EPHKT-Pfjy0jyi79W6ZZxI_0vXxDCWehXDWRqnOgCFc">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/60 to-transparent p-6 flex flex-col justify-end">
+<h3 class="font-headline-md text-headline-md text-secondary">THE AGOGE</h3>
+<p class="text-sm text-on-surface mb-4">Elite training for the chosen 300. Enroll in the specialized combat course.</p>
+<button class="w-full py-2 bg-transparent border border-secondary text-secondary font-label-caps text-xs tracking-widest hover:bg-secondary hover:text-on-secondary transition-colors uppercase">
+                        CHALLENGE STATUS
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Modal (Hidden by Default) -->
+<div class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4" id="booking-modal">
+<div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+<div class="relative bg-surface gold-inlay p-8 max-w-md w-full rounded-xl text-center">
+<span class="material-symbols-outlined text-secondary text-6xl mb-4" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">SLOT SECURED</h3>
+<p class="text-on-surface-variant mb-6 font-body-md">Your position in the phalanx is confirmed. Arrive with your shield or upon it.</p>
+<button class="px-8 py-3 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest rounded-lg hover:bg-primary-container transition-colors uppercase" onclick="closeModal()">
+                BY THE GODS, YES
+            </button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="lg:ml-64 w-full py-unit flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-4 bg-surface-container-lowest border-t border-outline-variant">
+<p class="font-label-caps text-label-caps text-primary">MOLON LABE GYM</p>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-60">© 480 BC VICTORY OR DEATH.</p>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-opacity font-body-md text-body-md" href="#">Honor Code</a>
+<a class="text-on-surface-variant hover:text-primary transition-opacity font-body-md text-body-md" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-primary transition-opacity font-body-md text-body-md" href="#">Privacy</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions for the schedule
+        const slots = document.querySelectorAll('.battle-slot, .bg-primary-container\\/20, .bg-surface-variant\\/80');
+        const modal = document.getElementById('booking-modal');
+
+        slots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                // Pulse effect
+                modal.querySelector('div:last-child').animate([
+                    { transform: 'scale(0.9)', opacity: 0 },
+                    { transform: 'scale(1)', opacity: 1 }
+                ], { duration: 300, easing: 'ease-out' });
+            });
+        });
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        // Add some atmospheric flicker to "torchlight" (gold accents)
+        function flicker() {
+            const goldElements = document.querySelectorAll('.text-secondary, .border-secondary');
+            goldElements.forEach(el => {
+                const opacity = 0.8 + Math.random() * 0.2;
+                el.style.opacity = opacity;
+            });
+            setTimeout(flicker, 100 + Math.random() * 200);
+        }
+        flicker();
+    </script>
+</body></html>

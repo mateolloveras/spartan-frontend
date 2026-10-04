@@ -1,0 +1,345 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MOLON LABE - Entrance to the Phalanx</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Chivo:wght@300;400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-tint": "#ffb4a8",
+                "tertiary-fixed": "#ffdad4",
+                "on-error": "#690005",
+                "on-surface-variant": "#e8bdb6",
+                "tertiary-fixed-dim": "#ffb4a8",
+                "surface": "#131313",
+                "on-primary": "#690000",
+                "surface-container-high": "#2a2a2a",
+                "surface-variant": "#353534",
+                "tertiary-container": "#bd2d1f",
+                "primary-fixed-dim": "#ffb4a8",
+                "error-container": "#93000a",
+                "on-tertiary-container": "#ffdad4",
+                "tertiary": "#ffb4a8",
+                "on-primary-fixed": "#410000",
+                "secondary-container": "#c69302",
+                "on-tertiary": "#690000",
+                "outline": "#ae8882",
+                "error": "#ffb4ab",
+                "on-primary-container": "#ffdad4",
+                "on-error-container": "#ffdad6",
+                "on-secondary": "#402d00",
+                "on-secondary-container": "#433000",
+                "surface-container-highest": "#353534",
+                "background": "#131313",
+                "on-background": "#e5e2e1",
+                "surface-bright": "#3a3939",
+                "surface-container": "#201f1f",
+                "outline-variant": "#5e3f3a",
+                "on-surface": "#e5e2e1",
+                "inverse-on-surface": "#313030",
+                "secondary-fixed-dim": "#f6be3b",
+                "surface-container-low": "#1c1b1b",
+                "secondary-fixed": "#ffdea0",
+                "on-secondary-fixed-variant": "#5c4300",
+                "on-tertiary-fixed-variant": "#920703",
+                "on-tertiary-fixed": "#410000",
+                "surface-container-lowest": "#0e0e0e",
+                "on-primary-fixed-variant": "#930000",
+                "inverse-surface": "#e5e2e1",
+                "primary-container": "#cc0000",
+                "on-secondary-fixed": "#261900",
+                "primary": "#ffb4a8",
+                "inverse-primary": "#c00000",
+                "surface-dim": "#131313",
+                "primary-fixed": "#ffdad4",
+                "secondary": "#f6be3b"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "unit": "8px",
+                "max-width": "1440px",
+                "gutter": "24px",
+                "margin-desktop": "64px",
+                "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                "stat-lg": ["Space Grotesk"],
+                "label-caps": ["Space Grotesk"],
+                "headline-md": ["Libre Caslon Text"],
+                "headline-xl": ["Libre Caslon Text"],
+                "body-md": ["Chivo"],
+                "headline-lg-mobile": ["Libre Caslon Text"],
+                "body-lg": ["Chivo"],
+                "headline-lg": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                "stat-lg": ["40px", {"lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "label-caps": ["14px", {"lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            overflow-x: hidden;
+        }
+
+        .greek-border {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0 40V0h40v40H0zM2 38h36V2H2v36zM34 6v28H6V6h28zm-2 2H8v24h24V8zM10 28h20v-4H14v-4h16v-4H10v12z' fill='%23DAA520' fill-opacity='0.15'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        .stone-texture {
+            background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 100%), 
+                              url('https://www.transparenttextures.com/patterns/dark-matter.png');
+        }
+
+        .metallic-glow {
+            box-shadow: 0 0 20px rgba(204, 0, 0, 0.3), inset 0 0 10px rgba(218, 165, 32, 0.2);
+        }
+
+        .torch-light {
+            background: radial-gradient(circle at 50% -20%, rgba(218, 165, 32, 0.15) 0%, transparent 70%);
+        }
+
+        .spear-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #DAA520, transparent);
+            position: relative;
+        }
+
+        .spear-divider::after {
+            content: '▲';
+            position: absolute;
+            right: 0;
+            top: -6px;
+            color: #DAA520;
+            font-size: 10px;
+        }
+
+        .bronze-seal {
+            background: radial-gradient(circle at center, #cd7f32 0%, #8b4513 100%);
+            border: 4px double #DAA520;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .bronze-seal:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 0 30px rgba(218, 165, 32, 0.5);
+        }
+        
+        input:focus {
+            outline: none;
+            border-bottom: 2px solid #DAA520 !important;
+            box-shadow: 0 4px 12px -2px rgba(218, 165, 32, 0.2);
+        }
+    </style>
+</head>
+<body class="text-on-background selection:bg-primary selection:text-white">
+<!-- Atmospheric Background -->
+<div class="fixed inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30 grayscale filter contrast-125" data-alt="A dramatic, cinematic wide shot of an ancient Spartan battlefield at dusk. The scene is shrouded in heavy shadows and atmospheric fog, with the distant silhouettes of bronze shields and upright spears. Low-key lighting creates a gritty, high-contrast aesthetic dominated by deep blacks, dark charcoal greys, and faint amber highlights from distant fires, evoking a sense of raw power and disciplined intensity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPJVff0W_TwNRNBGyhMEPVP9yyazwH5TpiNg3uyxh94aSszepT2CewK0Yo5YqmR2mftg4JUxQXdF-ErF9DdamAh0jOK4VxR2eojRPd80LoU5NnrDwy2nfG9b62oyPSBepKYrCNyRhPYoHRxeuESAJtE2opSLYVjBFBo_z5e4O4Z8EeL6AvY-LjaH33BLqgl6WQFB6_RZLiTL0DPDqgGwuTtIXvor4f20E0apj7Tck5-S3zWd69Gap2lA">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/80"></div>
+<div class="absolute inset-0 torch-light" style="background: radial-gradient(circle at 50% -20%, rgba(218, 165, 32, 0.16) 0%, transparent 70%);"></div>
+</div>
+<!-- Main Navigation (Hidden on login, as per shell suppression rule) -->
+<!-- Login Canvas -->
+<main class="relative z-10 min-h-screen flex items-center justify-center px-margin-mobile md:px-margin-desktop">
+<div class="w-full max-w-xl flex flex-col items-center">
+<!-- Brand Anchor -->
+<div class="mb-12 text-center">
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-[0.25em] uppercase drop-shadow-2xl mb-2">
+                    MOLON LABE
+                </h1>
+<div class="spear-divider w-48 mx-auto mb-4"></div>
+<p class="font-label-caps text-label-caps text-secondary tracking-widest">
+                    COME AND TAKE THEM
+                </p>
+</div>
+<!-- Login Card -->
+<div class="w-full bg-surface-container-lowest/95 backdrop-blur-md border-2 border-secondary/40 p-8 md:p-10 relative overflow-hidden stone-texture shadow-2xl rounded-sm" style="box-shadow: rgba(0, 0, 0, 0.9) 0px 0px 35px, rgba(0, 0, 0, 0.8) 0px 0px 20px inset, rgba(246, 190, 59, 0.15) 0px 0px 15px;">
+  <!-- Outer Greek Key Accent Top & Bottom -->
+  <div class="absolute top-0 left-0 w-full h-3 greek-border opacity-40 border-b border-secondary/30"></div>
+  <div class="absolute bottom-0 left-0 w-full h-3 greek-border opacity-40 border-t border-secondary/30"></div>
+  
+  <!-- Ornate Spartan Bronze Corner Pieces & Rivets -->
+  <div class="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-secondary pointer-events-none flex items-start justify-start p-0.5">
+    <div class="w-1.5 h-1.5 rounded-full bg-secondary/80 shadow-[0_0_4px_#f6be3b]"></div>
+  </div>
+  <div class="absolute top-2 right-2 w-6 h-6 border-t-2 border-r-2 border-secondary pointer-events-none flex items-start justify-end p-0.5">
+    <div class="w-1.5 h-1.5 rounded-full bg-secondary/80 shadow-[0_0_4px_#f6be3b]"></div>
+  </div>
+  <div class="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-secondary pointer-events-none flex items-end justify-start p-0.5">
+    <div class="w-1.5 h-1.5 rounded-full bg-secondary/80 shadow-[0_0_4px_#f6be3b]"></div>
+  </div>
+  <div class="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-secondary pointer-events-none flex items-end justify-end p-0.5">
+    <div class="w-1.5 h-1.5 rounded-full bg-secondary/80 shadow-[0_0_4px_#f6be3b]"></div>
+  </div>
+
+  <!-- Card Header Emblem & Spartan War Portal Title -->
+  <div class="flex flex-col items-center mb-8 relative z-10 text-center">
+    <div class="w-14 h-14 rounded-full border border-secondary/50 flex items-center justify-center bg-gradient-to-b from-[#2a1c14] to-surface-container-lowest shadow-[0_0_15px_rgba(246,190,59,0.25)] mb-3">
+      <span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: &quot;FILL&quot; 1;">shield</span>
+    </div>
+    <h2 class="font-headline-md text-secondary tracking-[0.2em] uppercase text-sm md:text-base font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+      Portal de Guerra • Acceso a la Falange
+    </h2>
+    <div class="flex items-center gap-3 mt-2">
+      <div class="h-px w-10 bg-gradient-to-r from-transparent via-secondary/60 to-transparent"></div>
+      <span class="text-[10px] tracking-[0.25em] text-outline uppercase font-label-caps">Solo los Dignos Cruzarán</span>
+      <div class="h-px w-10 bg-gradient-to-r from-transparent via-secondary/60 to-transparent"></div>
+    </div>
+  </div>
+
+  <form class="flex flex-col gap-6 relative z-10">
+    <div class="space-y-5">
+      <!-- Warrior Identity Input -->
+      <div class="group">
+        <div class="flex justify-between items-center mb-1.5">
+          <label class="font-label-caps text-[12px] text-on-surface-variant group-focus-within:text-secondary transition-colors tracking-widest block">
+            IDENTIDAD DEL GUERRERO
+          </label>
+          <span class="text-[10px] font-label-caps text-outline uppercase tracking-wider">Legión / Rango</span>
+        </div>
+        <div class="relative rounded-sm border border-outline-variant/60 group-focus-within:border-secondary transition-all bg-surface-container-low shadow-[inset_0_2px_8px_rgba(0,0,0,0.8)]">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-secondary/70 text-xl pointer-events-none group-focus-within:text-secondary group-focus-within:drop-shadow-[0_0_6px_rgba(246,190,59,0.5)] transition-all">sports_martial_arts</span>
+          <input class="w-full bg-transparent border-0 text-on-surface font-body-md pl-12 pr-4 py-3.5 placeholder:text-outline/50 focus:ring-0 focus:outline-none" placeholder="Ingresa tu nombre o estandarte" type="text" required="">
+        </div>
+      </div>
+
+      <!-- Encrypted Oath Password Input -->
+      <div class="group">
+        <div class="flex justify-between items-center mb-1.5">
+          <label class="font-label-caps text-[12px] text-on-surface-variant group-focus-within:text-secondary transition-colors tracking-widest block">
+            JURAMENTO CIFRADO
+          </label>
+          <span class="text-[10px] font-label-caps text-outline uppercase tracking-wider">Llave Secreta</span>
+        </div>
+        <div class="relative rounded-sm border border-outline-variant/60 group-focus-within:border-secondary transition-all bg-surface-container-low shadow-[inset_0_2px_8px_rgba(0,0,0,0.8)]">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-secondary/70 text-xl pointer-events-none group-focus-within:text-secondary group-focus-within:drop-shadow-[0_0_6px_rgba(246,190,59,0.5)] transition-all">key</span>
+          <input class="w-full bg-transparent border-0 text-on-surface font-body-md pl-12 pr-4 py-3.5 placeholder:text-outline/50 focus:ring-0 focus:outline-none tracking-widest" placeholder="••••••••" type="password" required="">
+        </div>
+      </div>
+    </div>
+
+    <!-- Guard Session Checkbox -->
+    <div class="flex items-center justify-between pt-1 border-t border-outline-variant/30 text-xs">
+      <label class="flex items-center gap-2.5 cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors select-none">
+        <input type="checkbox" checked="" class="rounded-sm border-outline-variant text-secondary bg-surface-container-low focus:ring-0 focus:ring-offset-0 cursor-pointer w-4 h-4">
+        <span class="font-label-caps text-[11px] tracking-wider">PERMANECER EN LA GUARDIA</span>
+      </label>
+      <span class="text-[10px] text-outline uppercase tracking-widest hidden sm:inline font-label-caps">Centinela Activo</span>
+    </div>
+
+    <!-- Centered Bronze Spartan Shield Button with Lambda (Λ) -->
+    <div class="mt-3">
+      <button type="submit" class="w-full py-4 px-6 bg-gradient-to-r from-primary-container via-[#8B0000] to-primary-container border border-secondary/60 text-on-primary-container font-headline-md text-sm md:text-base font-bold tracking-[0.2em] hover:tracking-[0.25em] uppercase rounded-sm shadow-[0_0_20px_rgba(204,0,0,0.35),_0_0_10px_rgba(246,190,59,0.2)] hover:scale-[1.02] active:scale-[0.98] hover:border-secondary transition-all duration-300 ease-out transform flex items-center justify-center gap-3 cursor-pointer group" style="transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);" onmouseover="this.style.boxShadow='0 0 20px rgba(204,0,0,0.7), 0 0 35px rgba(218,165,32,0.4)'; this.style.borderColor='rgba(218,165,32,0.8)';" onmouseout="this.style.boxShadow='0 0 20px rgba(204,0,0,0.35), 0 0 10px rgba(246,190,59,0.2)'; this.style.borderColor='rgba(246,190,59,0.6)';"><span class="lambda-glyph transition-all duration-300 inline-block font-headline-xl font-bold text-lg leading-none text-secondary group-hover:scale-125 group-hover:drop-shadow-[0_0_10px_#DAA520]" style="text-shadow: 0 0 4px rgba(246,190,59,0.5);">Λ</span><span class="transition-all duration-300">ENTRAR A LA FALANGE</span><span class="lambda-glyph transition-all duration-300 inline-block font-headline-xl font-bold text-lg leading-none text-secondary group-hover:scale-125 group-hover:drop-shadow-[0_0_10px_#DAA520]" style="text-shadow: 0 0 4px rgba(246,190,59,0.5);">Λ</span></button>
+    </div>
+  </form>
+
+  <!-- Google Sign In Divider -->
+  <div class="flex items-center gap-4 mt-6 relative z-10">
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-outline-variant/60 to-transparent"></div>
+    <span class="font-label-caps text-[10px] text-outline tracking-[0.3em]">O CONTINÚA CON</span>
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-outline-variant/60 to-transparent"></div>
+  </div>
+
+  <!-- Google Button -->
+  <button type="button" class="w-full mt-4 py-3.5 px-6 bg-surface-container border border-outline-variant/60 hover:border-secondary/50 text-on-surface font-label-caps text-[12px] tracking-wider rounded-sm flex items-center justify-center gap-3 transition-all duration-300 hover:bg-surface-bright relative z-10 group">
+    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+    </svg>
+    <span class="group-hover:text-secondary transition-colors">INGRESAR CON GOOGLE</span>
+  </button>
+
+  <!-- Solemn Sacred Links -->
+  <div class="mt-8 pt-6 border-t border-outline-variant/40 flex flex-col sm:flex-row justify-between items-center gap-3 relative z-10">
+    <a class="font-label-caps text-[11px] text-on-surface-variant hover:text-primary transition-colors tracking-widest flex items-center gap-1.5" href="#">
+      <span class="material-symbols-outlined text-[14px]">help_outline</span>
+      ¿RITOS OLVIDADOS?
+    </a>
+    <a class="font-label-caps text-[11px] text-secondary border-b border-secondary/40 hover:border-secondary hover:text-primary transition-all tracking-widest flex items-center gap-1.5" href="#">
+      <span class="material-symbols-outlined text-[14px]">military_tech</span>
+      ALISTARSE EN EL EJÉRCITO
+    </a>
+  </div>
+</div>
+<!-- Motivational Footer -->
+<div class="mt-16 text-center max-w-md">
+<p class="font-headline-md text-[18px] text-on-surface-variant italic leading-relaxed opacity-60">
+                    "Here we stay, and here we fight. To the last man, to the last breath."
+                </p>
+<div class="flex items-center justify-center gap-4 mt-6">
+<div class="h-px w-12 bg-outline-variant"></div>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">shield</span>
+<div class="h-px w-12 bg-outline-variant"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Message (Toast-like Micro-interaction) -->
+<div class="fixed bottom-10 left-1/2 -translate-x-1/2 translate-y-32 transition-transform duration-700 ease-out z-50" id="welcome-banner">
+<div class="bg-primary-container text-on-primary-container px-8 py-4 border border-primary/50 flex items-center gap-4 shadow-2xl rounded-sm">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label-caps tracking-widest">VICTORY OR DEATH</span>
+</div>
+</div>
+<!-- Background Interactions Script -->
+<script>
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const banner = document.getElementById('welcome-banner');
+            banner.classList.remove('translate-y-32');
+            banner.classList.add('translate-y-0');
+            
+            // Subtle shake effect on the button
+            const btn = document.querySelector('.bronze-seal');
+            btn.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1.05)';
+            }, 100);
+        });
+
+        // Torch flicker simulation
+        const torch = document.querySelector('.torch-light');
+        setInterval(() => {
+            const opacity = 0.12 + Math.random() * 0.06;
+            torch.style.background = `radial-gradient(circle at 50% -20%, rgba(218, 165, 32, ${opacity}) 0%, transparent 70%)`;
+        }, 150);
+
+        // Particle effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            document.querySelector('.torch-light').style.background = 
+                `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(218, 165, 32, 0.1), transparent 50%)`;
+        });
+    </script>
+
+
+
+
+</body></html>

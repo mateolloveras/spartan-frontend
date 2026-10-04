@@ -1,0 +1,481 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Strategos | Council of Warriors</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Chivo:ital,wght@0,300;0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#ffb4a8",
+                    "tertiary-fixed": "#ffdad4",
+                    "on-error": "#690005",
+                    "on-surface-variant": "#e8bdb6",
+                    "tertiary-fixed-dim": "#ffb4a8",
+                    "surface": "#131313",
+                    "on-primary": "#690000",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-variant": "#353534",
+                    "tertiary-container": "#bd2d1f",
+                    "primary-fixed-dim": "#ffb4a8",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#ffdad4",
+                    "tertiary": "#ffb4a8",
+                    "on-primary-fixed": "#410000",
+                    "secondary-container": "#c69302",
+                    "on-tertiary": "#690000",
+                    "outline": "#ae8882",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#ffdad4",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary": "#402d00",
+                    "on-secondary-container": "#433000",
+                    "surface-container-highest": "#353534",
+                    "background": "#131313",
+                    "on-background": "#e5e2e1",
+                    "surface-bright": "#3a3939",
+                    "surface-container": "#201f1f",
+                    "outline-variant": "#5e3f3a",
+                    "on-surface": "#e5e2e1",
+                    "inverse-on-surface": "#313030",
+                    "secondary-fixed-dim": "#f6be3b",
+                    "surface-container-low": "#1c1b1b",
+                    "secondary-fixed": "#ffdea0",
+                    "on-secondary-fixed-variant": "#5c4300",
+                    "on-tertiary-fixed-variant": "#920703",
+                    "on-tertiary-fixed": "#410000",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-primary-fixed-variant": "#930000",
+                    "inverse-surface": "#e5e2e1",
+                    "primary-container": "#cc0000",
+                    "on-secondary-fixed": "#261900",
+                    "primary": "#ffb4a8",
+                    "inverse-primary": "#c00000",
+                    "surface-dim": "#131313",
+                    "primary-fixed": "#ffdad4",
+                    "secondary": "#f6be3b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "max-width": "1440px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "stat-lg": ["Space Grotesk"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Libre Caslon Text"],
+                    "headline-xl": ["Libre Caslon Text"],
+                    "body-md": ["Chivo"],
+                    "headline-lg-mobile": ["Libre Caslon Text"],
+                    "body-lg": ["Chivo"],
+                    "headline-lg": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                    "stat-lg": ["40px", {"lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["14px", {"lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(204, 0, 0, 0.05) 0%, transparent 50%),
+                url('https://www.transparenttextures.com/patterns/dark-leather.png');
+            color: #e5e2e1;
+        }
+        .spear-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #cc0000 50%, transparent 100%);
+            position: relative;
+        }
+        .spear-divider::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 8px;
+            height: 8px;
+            background: #f6be3b;
+            border: 1px solid #c69302;
+        }
+        .metallic-button {
+            background: linear-gradient(180deg, #cc0000 0%, #8b0000 100%);
+            border-top: 1px solid #f6be3b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        .metallic-button:hover {
+            box-shadow: 0 0 15px rgba(204, 0, 0, 0.4);
+            filter: brightness(1.1);
+        }
+        .carved-input {
+            background: #0e0e0e;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+            border: none;
+            border-bottom: 2px solid #5e3f3a;
+        }
+        .carved-input:focus {
+            outline: none;
+            border-bottom: 2px solid #f6be3b;
+        }
+        .zebra-row:nth-child(even) {
+            background-color: rgba(204, 0, 0, 0.03);
+        }
+        .zebra-row:hover {
+            background-color: rgba(255, 180, 168, 0.05);
+        }
+        .gold-glow {
+            text-shadow: 0 0 10px rgba(246, 190, 59, 0.3);
+        }
+    </style>
+</head>
+<body class="font-body-md overflow-x-hidden">
+<!-- Sidebar Navigation -->
+<nav class="hidden lg:flex flex-col fixed left-0 top-0 h-full w-64 py-8 z-40 bg-surface-container border-r border-outline-variant shadow-2xl">
+<div class="px-6 mb-12">
+<h2 class="font-headline-md text-headline-md text-primary tracking-widest">STRATEGOS</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70">LEONIDAS I</p>
+</div>
+<div class="flex-grow space-y-2">
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary mx-2 my-1 hover:bg-surface-bright transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+<span class="font-label-caps text-label-caps">Command</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary mx-2 my-1 hover:bg-surface-bright transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps">Phalanx</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary mx-2 my-1 hover:bg-surface-bright transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-caps text-label-caps">Scrolls</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary mx-2 my-1 hover:bg-surface-bright transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-caps text-label-caps">The Forge</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 bg-primary-container text-on-primary-container rounded-lg mx-2 my-1 transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-label-caps text-label-caps">Council</span>
+</a>
+</div>
+<div class="px-4 mt-auto space-y-2 pt-8 border-t border-outline-variant/30">
+<div class="flex items-center gap-4 px-4 py-2 mb-4">
+<img alt="Spartan Commander Profile" class="w-10 h-10 rounded-full border border-secondary" data-alt="A portrait of a battle-hardened Spartan commander with a thick beard and weathered skin. He is illuminated by dramatic torchlight in a dark, stone-walled room, creating deep shadows. The aesthetic is cinematic and gritty, with a color palette of deep blacks, earthy browns, and glowing gold highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc1-AReWsSdoZrIsdqMACDdhIPzUR3BJd7V0aCgn5lQWJZijqJ83o0X9Zi3LXSnQWDN6BBFmg1ACX3ujBiknylpJnRsJo-NSBJ5efHVjgtrAPLtNeK0iYB7AMMSMppSp2imIbpr7nTf3z5v5YHW3hiO2tUh5P1L6V5XyfXJ3j9xoClSkYN-TZoSWHy2Cb3P1JoxMUedQKIkzCqUYzqMa3LYXjwxSRj8FrPvU8ScdR8iINeJX-Fo8sErPpP_03lcxoX8Mq9o_ekYvvh">
+<div>
+<p class="font-label-caps text-label-caps text-primary">COMMANDER</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Sector Alpha</p>
+</div>
+</div>
+<a class="flex items-center gap-4 px-6 py-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps">Exit</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 min-h-screen px-margin-mobile md:px-margin-desktop py-10 pb-24">
+<!-- Header Section -->
+<header class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-primary gold-glow mb-2 uppercase">Council of Warriors</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Manage the ranks of the Molon Labe gym. Authenticate new recruits, oversee veteran status, and maintain the discipline of the phalanx.</p>
+</div>
+<button class="metallic-button px-8 py-4 rounded-sm flex items-center gap-3 font-label-caps text-label-caps text-white group">
+<span class="material-symbols-outlined transition-transform group-hover:rotate-90" data-icon="person_add">person_add</span>
+                    ENLIST NEW WARRIOR
+                </button>
+</div>
+</header>
+<!-- Search and Filter Bar -->
+<div class="mb-8 grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+<div class="md:col-span-2 relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="carved-input w-full pl-12 pr-4 py-4 font-label-caps text-label-caps text-primary placeholder:text-outline-variant" placeholder="SEARCH BY NAME OR RANK..." type="text">
+</div>
+<div class="relative">
+<select class="carved-input w-full px-4 py-4 font-label-caps text-label-caps text-primary appearance-none cursor-pointer">
+<option>ALL RANKS</option>
+<option>CLIENT</option>
+<option>EMPLOYEE</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</div>
+<div class="relative">
+<select class="carved-input w-full px-4 py-4 font-label-caps text-label-caps text-primary appearance-none cursor-pointer">
+<option>ALL STATUSES</option>
+<option>ACTIVE</option>
+<option>INACTIVE</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Warriors Table -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden shadow-2xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-b-2 border-secondary/50">
+<th class="px-6 py-6 font-label-caps text-label-caps text-secondary uppercase tracking-widest">Warrior Name</th>
+<th class="px-6 py-6 font-label-caps text-label-caps text-secondary uppercase tracking-widest">Role</th>
+<th class="px-6 py-6 font-label-caps text-label-caps text-secondary uppercase tracking-widest text-center">Membership Status</th>
+<th class="px-6 py-6 font-label-caps text-label-caps text-secondary uppercase tracking-widest text-right">Quick Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<!-- Row 1 -->
+<tr class="zebra-row transition-colors group">
+<td class="px-6 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full border-2 border-outline-variant bg-surface flex items-center justify-center overflow-hidden">
+<img alt="Warrior Avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a muscular athlete with sweat glistening on their skin, set against a dark, industrial gym background. The lighting is high-contrast, highlighting the textures of skin and fabric. The color scheme is dominated by dark charcoal and subtle warm ambers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhVcT5UXq3-66K0i0cTQblS5NdyU6HzNMgCX65rG3LhofqOdhkGxeyeWWS1D3xWZzT8ljHaZl7dt4J-YfpXgm_PLbciMUKs4wm-LJIPv4miLPHudGaK46HJBtCY3DgHDEWWi1dBcNfaRZM-0YrkdW23IMBhvcwglga9_4JEm4wX7M9ogIIjpsE6fYwlKB5q1HUxJk6Ew1AINzWywRusc63vUOK0T4CR3t2hEiq8dkvVGh2U7glNa9qrey2AMdwNJ97YOvQ4VfdVv9p">
+</div>
+<div>
+<p class="font-headline-md text-[18px] text-on-surface group-hover:text-primary transition-colors">Daximus Thorne</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant">ID: ML-00482</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 rounded-full border border-secondary/30 bg-secondary/10 text-secondary font-label-caps text-[12px]">CLIENT</span>
+</td>
+<td class="px-6 py-6 text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/20 text-primary border border-primary/30 font-label-caps text-[12px]">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    ACTIVE
+                                </div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-primary hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-all">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="zebra-row transition-colors group">
+<td class="px-6 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full border-2 border-outline-variant bg-surface flex items-center justify-center overflow-hidden">
+<img alt="Warrior Avatar" class="w-full h-full object-cover" data-alt="A cinematic side profile of a focused female athlete wearing tactical fitness gear. The scene is lit by a single, dramatic light source in a dark, stone-textured environment, creating deep shadows and bright highlights on her face. The mood is intense and disciplined." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6ckSsta8zdQrLDnEchtF4vWXxaSBN8QOy9i3rCSQG7R_bUlGHBgoXpLbMoF6wXuKufjVN4CWmXA_h9ZNLGOSWzFOZA9qtW9Be_TRNEbaLy7v8n6Vc7JDHHzNY8P6UIQh59-v1k7ambJ3Ufg92ZE1asaXdB5mzxvcRrNpjMv-eKBRhjP4bu_eqy0IOIzY1O6bkNFleV3vMbpeyaqJKlcQ1fzoMDaJnjrK1ejpMfudII4x4X2IlrsxSLblrCAoCnTOy4vABzj55P_ua">
+</div>
+<div>
+<p class="font-headline-md text-[18px] text-on-surface group-hover:text-primary transition-colors">Artemis Krow</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant">ID: ML-00511</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 rounded-full border border-primary/30 bg-primary-container/10 text-primary font-label-caps text-[12px]">EMPLOYEE</span>
+</td>
+<td class="px-6 py-6 text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/20 text-primary border border-primary/30 font-label-caps text-[12px]">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    ACTIVE
+                                </div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-primary hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-all">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="zebra-row transition-colors group">
+<td class="px-6 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full border-2 border-outline-variant bg-surface flex items-center justify-center overflow-hidden grayscale opacity-50">
+<img alt="Warrior Avatar" class="w-full h-full object-cover" data-alt="A portrait of a male athlete in low light, with shadows obscuring half of his face. The image is desaturated and gritty, conveying a sense of exhaustion or departure. The background shows hints of a stone wall, typical of an ancient training temple." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2M3QfSynGtlb7qYcksl0IeCSRt_Vi3K6PYmj89SBrAPqmPVWibX-of0zHBKMrrWPE4YnaMriTkR79dbo45dvFDRDDtE-4L2SzhWIDeOXTlSLIDK52cly6Pzb2wixa9Y-T81HDa_NdRYcJJbsEOr4nLsZlvzsQ9rKebjoEEYaq38Xl3zGAFd9SnVownxSSCA8NSCFG82fi79IN2bMY5SqNZwdCPH2-0RVmZ9qtfJX-1yxLlSLcFN78WYdbohSiTWqzvrEy9Qe1EVPO">
+</div>
+<div>
+<p class="font-headline-md text-[18px] text-on-surface-variant group-hover:text-primary transition-colors">Cassius Vale</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant">ID: ML-00203</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 rounded-full border border-outline-variant/30 bg-surface-variant/20 text-on-surface-variant font-label-caps text-[12px]">CLIENT</span>
+</td>
+<td class="px-6 py-6 text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-outline-variant/10 text-on-surface-variant border border-outline-variant/30 font-label-caps text-[12px]">
+<span class="w-2 h-2 rounded-full bg-on-surface-variant/40"></span>
+                                    INACTIVE
+                                </div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-primary hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-all">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="zebra-row transition-colors group">
+<td class="px-6 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full border-2 border-outline-variant bg-surface flex items-center justify-center overflow-hidden">
+<img alt="Warrior Avatar" class="w-full h-full object-cover" data-alt="A portrait of a mature warrior with intense eyes and a sharp jawline. The background is a dark, heavily textured stone wall illuminated by a warm, orange torchlight from the side. The lighting creates a high-contrast skeuomorphic effect, emphasizing strength and experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMXMWUYt9grn3Lg9yrzDgbh1l96eiLMdRkAvG7HLfafAw8_4Abcy1ZejTA2q_ym-iHTQUsa_aGyFfg-ytjSi2lJWdm_hza_t1GoNqMZB9hqch09NRaAmcA1EkKWx_uwnC7j5aF0DA6N2VL7RyZcN4aGbj7bD436pUU7wSW2R7TYsMOZ083T8ByOEzSR_uS6NbFMw-E0G6dMCBTELEtveCGEn9ua8-K-qP3p5HHoAv9PUXXAdOksujeaBdCtRzfSksMiulTanC45WEU">
+</div>
+<div>
+<p class="font-headline-md text-[18px] text-on-surface group-hover:text-primary transition-colors">General Tiberius</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant">ID: ML-00001</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 rounded-full border border-primary/30 bg-primary-container/10 text-primary font-label-caps text-[12px]">EMPLOYEE</span>
+</td>
+<td class="px-6 py-6 text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/20 text-primary border border-primary/30 font-label-caps text-[12px]">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    ACTIVE
+                                </div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-primary hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-all">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="px-6 py-6 bg-surface-container border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-caps text-[12px] text-on-surface-variant">Showing 4 of 300 warriors in the phalanx</p>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded border border-outline-variant flex items-center justify-center hover:bg-surface-bright transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded border border-primary bg-primary-container text-on-primary-container flex items-center justify-center font-label-caps">1</button>
+<button class="w-10 h-10 rounded border border-outline-variant flex items-center justify-center hover:bg-surface-bright transition-colors text-on-surface-variant font-label-caps">2</button>
+<button class="w-10 h-10 rounded border border-outline-variant flex items-center justify-center hover:bg-surface-bright transition-colors text-on-surface-variant font-label-caps">3</button>
+<button class="w-10 h-10 rounded border border-outline-variant flex items-center justify-center hover:bg-surface-bright transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- System Alerts / Notifications (Floating Task Cards) -->
+<section class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-high p-6 border-l-4 border-secondary shadow-lg">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="warning">warning</span>
+<h3 class="font-label-caps text-label-caps text-secondary">Expiring Oaths</h3>
+</div>
+<p class="text-body-md text-on-surface-variant mb-4">12 warriors have memberships expiring in the next 7 cycles.</p>
+<a class="text-primary font-label-caps text-[12px] hover:underline flex items-center gap-1" href="#">
+                    VIEW LIST <span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="bg-surface-container-high p-6 border-l-4 border-primary shadow-lg">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="new_releases">new_releases</span>
+<h3 class="font-label-caps text-label-caps text-primary">Pending Enlistments</h3>
+</div>
+<p class="text-body-md text-on-surface-variant mb-4">5 recruits are awaiting review by the Council for admission.</p>
+<a class="text-primary font-label-caps text-[12px] hover:underline flex items-center gap-1" href="#">
+                    REVIEW NOW <span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="bg-surface-container-high p-6 border-l-4 border-outline-variant shadow-lg opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-outline-variant" data-icon="history_edu">history_edu</span>
+<h3 class="font-label-caps text-label-caps text-on-surface">Council Minutes</h3>
+</div>
+<p class="text-body-md text-on-surface-variant mb-4">Review the latest administrative changes and protocol updates.</p>
+<a class="text-primary font-label-caps text-[12px] hover:underline flex items-center gap-1" href="#">
+                    READ LOGS <span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container border-t border-outline-variant z-50 flex justify-around items-center h-16 px-4">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+<span class="text-[10px] font-label-caps">HOME</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="text-[10px] font-label-caps">RANKS</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="text-[10px] font-label-caps">COUNCIL</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-[10px] font-label-caps">PROFILE</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="lg:ml-64 w-full py-unit flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-4 bg-surface-container-lowest border-t border-outline-variant pb-24 lg:pb-8">
+<div class="font-label-caps text-label-caps text-primary tracking-widest">MOLON LABE GYM</div>
+<div class="font-body-md text-body-md text-on-surface-variant">© 480 BC MOLON LABE GYM. VICTORY OR DEATH.</div>
+<div class="flex gap-6 text-on-surface-variant font-label-caps text-[12px]">
+<a class="hover:text-primary transition-colors" href="#">Honor Code</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions for table rows
+        document.querySelectorAll('.zebra-row').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.querySelector('.material-symbols-outlined').style.transform = 'scale(1.2)';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.querySelector('.material-symbols-outlined').style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple mobile toggle for sidebar (not fully implemented as per requirements but useful structure)
+        console.log('Spartan Council System Initialized');
+    </script>
+</body></html>

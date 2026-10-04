@@ -1,0 +1,394 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MOLON LABE - STRATEGOS DASHBOARD</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Space+Grotesk:wght@300;500;700&amp;family=Chivo:wght@300;400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@100..900&amp;family=Libre+Caslon+Text:wght@100..900&amp;family=Space+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        .stone-texture {
+            background-color: #131313;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .etched-border {
+            border: 1px solid #5e3f3a;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.8);
+        }
+        .gold-glow {
+            box-shadow: 0 0 15px rgba(218, 165, 32, 0.15);
+        }
+        .spear-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #ae8882 50%, transparent 100%);
+            position: relative;
+        }
+        .spear-divider::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid #ae8882;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+        .metallic-button {
+            background: linear-gradient(180deg, #cc0000 0%, #8b0000 100%);
+            border-top: 1px solid #daa520;
+            transition: all 0.3s ease;
+        }
+        .metallic-button:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
+        }
+        .phalanx-segment {
+            height: 8px;
+            background: #353534;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .phalanx-segment-fill {
+            height: 100%;
+            background: #cc0000;
+            box-shadow: 0 0 8px #cc0000;
+        }
+        .meander-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10h5v5h10v-10h-5v-5h20v5h-5v10h10v-5h5' fill='none' stroke='%23daa520' stroke-width='1' opacity='0.2'/%3E%3C/svg%3E");
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#ffb4a8",
+                      "tertiary-fixed": "#ffdad4",
+                      "on-error": "#690005",
+                      "on-surface-variant": "#e8bdb6",
+                      "tertiary-fixed-dim": "#ffb4a8",
+                      "surface": "#131313",
+                      "on-primary": "#690000",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-variant": "#353534",
+                      "tertiary-container": "#bd2d1f",
+                      "primary-fixed-dim": "#ffb4a8",
+                      "error-container": "#93000a",
+                      "on-tertiary-container": "#ffdad4",
+                      "tertiary": "#ffb4a8",
+                      "on-primary-fixed": "#410000",
+                      "secondary-container": "#c69302",
+                      "on-tertiary": "#690000",
+                      "outline": "#ae8882",
+                      "error": "#ffb4ab",
+                      "on-primary-container": "#ffdad4",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary": "#402d00",
+                      "on-secondary-container": "#433000",
+                      "surface-container-highest": "#353534",
+                      "background": "#131313",
+                      "on-background": "#e5e2e1",
+                      "surface-bright": "#3a3939",
+                      "surface-container": "#201f1f",
+                      "outline-variant": "#5e3f3a",
+                      "on-surface": "#e5e2e1",
+                      "inverse-on-surface": "#313030",
+                      "secondary-fixed-dim": "#f6be3b",
+                      "surface-container-low": "#1c1b1b",
+                      "secondary-fixed": "#ffdea0",
+                      "on-secondary-fixed-variant": "#5c4300",
+                      "on-tertiary-fixed-variant": "#920703",
+                      "on-tertiary-fixed": "#410000",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-primary-fixed-variant": "#930000",
+                      "inverse-surface": "#e5e2e1",
+                      "primary-container": "#cc0000",
+                      "on-secondary-fixed": "#261900",
+                      "primary": "#ffb4a8",
+                      "inverse-primary": "#c00000",
+                      "surface-dim": "#131313",
+                      "primary-fixed": "#ffdad4",
+                      "secondary": "#f6be3b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "max-width": "1440px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "stat-lg": ["Space Grotesk"],
+                      "label-caps": ["Space Grotesk"],
+                      "headline-md": ["Libre Caslon Text"],
+                      "headline-xl": ["Libre Caslon Text"],
+                      "body-md": ["Chivo"],
+                      "headline-lg-mobile": ["Libre Caslon Text"],
+                      "body-lg": ["Chivo"],
+                      "headline-lg": ["Libre Caslon Text"]
+              },
+              "fontSize": {
+                      "stat-lg": ["40px", {"lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["14px", {"lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface stone-texture min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full w-64 py-8 z-40 bg-surface-container border-r border-outline-variant shadow-2xl">
+<div class="px-6 mb-12">
+<h2 class="font-headline-md text-headline-md text-primary tracking-tighter">STRATEGOS</h2>
+<p class="font-label-caps text-[10px] text-on-surface-variant tracking-[0.3em] uppercase">Leonidas I</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 px-6 py-3 bg-primary-container text-on-primary-container rounded-lg mx-2 my-1 transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+<span class="font-label-caps text-label-caps">Command</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Phalanx</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Scrolls</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">The Forge</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:text-primary mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Council</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full metallic-button text-white font-label-caps py-4 rounded shadow-lg uppercase tracking-widest text-sm">
+                Log Workout
+            </button>
+<div class="pt-6 border-t border-outline-variant/30 space-y-2">
+<a class="flex items-center gap-4 px-6 py-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Exit</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-64 p-margin-mobile md:p-margin-desktop min-h-screen">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-on-background tracking-tighter uppercase mb-2">Battle Command</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Strategos Leonidas, 42 Warriors are currently in training. The phalanx is strong. Glory awaits those who endure.</p>
+</div>
+<div class="flex gap-4">
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-primary">System Integrity</p>
+<p class="font-stat-lg text-stat-lg">98%</p>
+</div>
+</div>
+</header>
+<div class="spear-divider mb-12"></div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Task List Card -->
+<section class="md:col-span-5 bg-surface-container-low etched-border rounded-lg p-6 relative overflow-hidden group">
+<div class="meander-pattern absolute inset-0 opacity-10 pointer-events-none"></div>
+<div class="relative z-10">
+<h3 class="font-label-caps text-label-caps text-secondary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="assignment">assignment</span>
+                        Daily Edicts
+                    </h3>
+<ul class="space-y-4">
+<li class="flex items-center justify-between p-4 bg-surface-container border border-outline-variant rounded hover:border-primary transition-all cursor-pointer">
+<span class="font-body-md text-body-md">Check-in Warriors</span>
+<span class="material-symbols-outlined text-primary" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</li>
+<li class="flex items-center justify-between p-4 bg-surface-container border border-outline-variant rounded hover:border-primary transition-all cursor-pointer">
+<span class="font-body-md text-body-md">Assign Routine</span>
+<span class="material-symbols-outlined text-primary" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</li>
+<li class="flex items-center justify-between p-4 bg-surface-container border border-outline-variant rounded hover:border-primary transition-all cursor-pointer">
+<span class="font-body-md text-body-md">Review Progress</span>
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</li>
+</ul>
+</div>
+</section>
+<!-- Training Sessions Card (Focus Area) -->
+<section class="md:col-span-7 bg-surface-container-high border-2 border-secondary/20 rounded-xl p-8 gold-glow relative">
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-secondary/10 text-secondary border border-secondary/30 px-3 py-1 text-[10px] font-label-caps rounded-full">LIVE DRILLS</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-8">Active Phalanx</h3>
+<div class="space-y-8">
+<!-- Session Item -->
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full border-2 border-primary overflow-hidden flex-shrink-0">
+<img alt="Warrior Profile" class="w-full h-full object-cover grayscale" data-alt="A portrait of a focused male athlete with a rugged appearance, sweating profusely after a workout. The lighting is cinematic, high-contrast chiaroscuro, emphasizing the physical strain and determination. The background is a dark, stone gym environment with subtle red and gold highlights, consistent with an ancient Spartan warrior aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqZj5cWO24WNQ5XgbgSmlv99cNGuYkrtv3JXhrvpgfra3ctTZr2koKF4nju3OYIeNISoWUlH_nQUoH2HOfpIDBdw-wQtjgOgbmd7zXVEH-bC3VrFGMbaYSQETjMYBU3-TLIZ7aRhakp1VjqYk18JCXM5681gY-Xx9eEw_STakWS0u6-Kihz9tTNpAgaA4G3MMoeDQNrzqNrLvR0SUJOqRnrMnnINpKX7bq33fjsMo6sLvy5_TYfrlSEi5ZgPiMy44-WFRZO-hx96Is">
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-2">
+<p class="font-label-caps text-label-caps">Xenon of Thrace</p>
+<p class="font-label-caps text-[12px] text-on-surface-variant">Heavy Lifting • 45m</p>
+</div>
+<div class="phalanx-bar flex gap-1">
+<div class="flex-1 phalanx-segment"><div class="phalanx-segment-fill w-full"></div></div>
+<div class="flex-1 phalanx-segment"><div class="phalanx-segment-fill w-full"></div></div>
+<div class="flex-1 phalanx-segment"><div class="phalanx-segment-fill w-full"></div></div>
+<div class="flex-1 phalanx-segment"><div class="phalanx-segment-fill w-1/2"></div></div>
+<div class="flex-1 phalanx-segment"></div>
+</div>
+</div>
+</div>
+<!-- Session Item -->
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full border-2 border-outline overflow-hidden flex-shrink-0">
+<img alt="Warrior Profile" class="w-full h-full object-cover grayscale" data-alt="A professional female powerlifter with intense focus, preparing for a lift in a dimly lit, industrial gym setting. The atmosphere is epic and moody, with dust motes dancing in a single overhead spotlight. The color palette is dominated by deep blacks, charcoal greys, and sharp crimson accents. Professional photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1B6XA0Urr5gO_pb8vEjSquHoc9dxQHQtwWD4uKT8RKqoNp9pXOa0UYf33l9akb2IWRJ5MZfZtr3SVyuM0lksYr0wYMiWaz_xGSpQahnRyeQqkkTjanWs-gxBzcaZmHppsF1sflR3k3h15tOosPVNAqQjfRbN71vKlj9qXRhgh_8XnniXwbRZ2HTUBvi9TPKU6qRQmFpBx_Gv5pYFD0mTz4ldRlWz0cL8VV8Jr-Bi5TK4tE1D6QN2AoFrJvUNmBfpGCCIeRTBuKWQv">
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-2">
+<p class="font-label-caps text-label-caps">Artemis the Swift</p>
+<p class="font-label-caps text-[12px] text-on-surface-variant">Calisthenics • 22m</p>
+</div>
+<div class="phalanx-bar flex gap-1">
+<div class="flex-1 phalanx-segment"><div class="phalanx-segment-fill w-full"></div></div>
+<div class="flex-1 phalanx-segment"><div class="phalanx-segment-fill w-1/3"></div></div>
+<div class="flex-1 phalanx-segment"></div>
+<div class="flex-1 phalanx-segment"></div>
+<div class="flex-1 phalanx-segment"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Membership Overview -->
+<section class="md:col-span-12 bg-surface-container-lowest etched-border rounded-lg p-8">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Active Memberships</h3>
+<button class="text-secondary font-label-caps text-[12px] hover:underline">VIEW ALL SCROLLS</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-6 bg-surface-variant/30 border border-outline-variant rounded-lg">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-headline-md text-[24px] text-on-background">Elite Phalanx</p>
+<p class="text-[12px] font-label-caps text-secondary">Unlimited Access</p>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<p class="font-stat-lg text-stat-lg">124</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Active Warriors</p>
+</div>
+<div class="p-6 bg-surface-variant/30 border border-outline-variant rounded-lg">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-headline-md text-[24px] text-on-background">Skirmisher</p>
+<p class="text-[12px] font-label-caps text-on-surface-variant">3 Sessions / Week</p>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="bolt">bolt</span>
+</div>
+<p class="font-stat-lg text-stat-lg">89</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Active Warriors</p>
+</div>
+<div class="p-6 bg-surface-variant/30 border border-outline-variant rounded-lg">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-headline-md text-[24px] text-on-background">Citizen</p>
+<p class="text-[12px] font-label-caps text-on-surface-variant">Trial Membership</p>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="person">person</span>
+</div>
+<p class="font-stat-lg text-stat-lg">32</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Active Warriors</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="mt-20 w-full py-unit flex flex-col md:flex-row justify-between items-center gap-4 border-t border-outline-variant/30">
+<p class="font-label-caps text-[10px] text-primary">© 480 BC MOLON LABE GYM. VICTORY OR DEATH.</p>
+<div class="flex gap-8">
+<a class="font-body-md text-[12px] text-on-surface-variant hover:text-primary transition-opacity" href="#">Honor Code</a>
+<a class="font-body-md text-[12px] text-on-surface-variant hover:text-primary transition-opacity" href="#">Terms of Service</a>
+<a class="font-body-md text-[12px] text-on-surface-variant hover:text-primary transition-opacity" href="#">Privacy</a>
+</div>
+</footer>
+</main>
+<!-- Mobile Navigation (Visible only on small screens) -->
+<nav class="lg:hidden fixed bottom-0 w-full h-16 bg-surface-container border-t border-outline-variant flex justify-around items-center z-50">
+<button class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="text-[10px] font-label-caps">Command</span>
+</button>
+<button class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="text-[10px] font-label-caps">Phalanx</span>
+</button>
+<button class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="text-[10px] font-label-caps">Forge</span>
+</button>
+<button class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-label-caps">Account</span>
+</button>
+</nav>
+<script>
+        // Micro-interactions: Task completion toggle
+        document.querySelectorAll('li.cursor-pointer').forEach(item => {
+            item.addEventListener('click', function() {
+                const icon = this.querySelector('.material-symbols-outlined');
+                if (icon.innerText === 'radio_button_unchecked') {
+                    icon.innerText = 'check_circle';
+                    icon.classList.remove('text-primary');
+                    icon.classList.add('text-secondary');
+                    icon.style.fontVariationSettings = "'FILL' 1";
+                    this.classList.add('opacity-60');
+                } else {
+                    icon.innerText = 'radio_button_unchecked';
+                    icon.classList.add('text-primary');
+                    icon.classList.remove('text-secondary');
+                    icon.style.fontVariationSettings = "'FILL' 0";
+                    this.classList.remove('opacity-60');
+                }
+            });
+        });
+
+        // Atmospheric Effect: Torchlight follow
+        document.body.addEventListener('mousemove', e => {
+            const x = e.clientX;
+            const y = e.clientY;
+            document.body.style.backgroundImage = `
+                radial-gradient(circle at ${x}px ${y}px, rgba(218, 165, 32, 0.05) 0%, transparent 60%),
+                radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)
+            `;
+        });
+    </script>
+</body></html>

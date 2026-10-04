@@ -39,7 +39,7 @@ src/app/
 
 ## Diseños HTML
 Los diseños de cada pantalla están en:
-`C:\Users\Alan Romero\Documents\PROJECTS\spartan-design\`
+`spartan-design/` (dentro de este mismo repo)
 
 Cada carpeta tiene `code.html` (diseño completo) y `screen.png` (captura).
 

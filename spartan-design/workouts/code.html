@@ -1,0 +1,520 @@
+<!DOCTYPE html><html class="dark" lang="en" style="width: 1280px; height: 2224px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MOLON LABE - Workout Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Chivo:wght@300;400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        
+        /* Ancient Stone Texture & Skeuomorphism */
+        .stone-slab {
+            background: linear-gradient(135deg, #1A1A1A 0%, #131313 100%);
+            border: 1px solid #5e3f3a;
+            position: relative;
+            overflow: hidden;
+        }
+        .stone-slab::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/dark-matter.png");
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .gold-inlay {
+            border: 1px solid #DAA520;
+            box-shadow: inset 0 0 10px rgba(218, 165, 32, 0.1);
+        }
+
+        .spear-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #ae8882 50%, transparent 100%);
+            position: relative;
+        }
+        .spear-divider::after {
+            content: "▲";
+            position: absolute;
+            right: 0;
+            top: -6px;
+            color: #ae8882;
+            font-size: 10px;
+        }
+
+        .metallic-button {
+            background: linear-gradient(180deg, #CC0000 0%, #8B0000 100%);
+            border-top: 1px solid #DAA520;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+        .metallic-button:hover {
+            box-shadow: 0 0 20px rgba(204, 0, 0, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .carved-input {
+            background: #0e0e0e;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+            border: none;
+            border-bottom: 2px solid #5e3f3a;
+        }
+        .carved-input:focus {
+            border-bottom-color: #DAA520;
+            outline: none;
+        }
+
+        .meander-pattern {
+            background-image: url("https://www.transparenttextures.com/patterns/greek-vase.png");
+            opacity: 0.05;
+        }
+
+        /* Torchlight Effect */
+        .torchlight {
+            background: radial-gradient(circle at 50% -20%, rgba(218, 165, 32, 0.15) 0%, transparent 70%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#ffb4a8",
+                      "tertiary-fixed": "#ffdad4",
+                      "on-error": "#690005",
+                      "on-surface-variant": "#e8bdb6",
+                      "tertiary-fixed-dim": "#ffb4a8",
+                      "surface": "#131313",
+                      "on-primary": "#690000",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-variant": "#353534",
+                      "tertiary-container": "#bd2d1f",
+                      "primary-fixed-dim": "#ffb4a8",
+                      "error-container": "#93000a",
+                      "on-tertiary-container": "#ffdad4",
+                      "tertiary": "#ffb4a8",
+                      "on-primary-fixed": "#410000",
+                      "secondary-container": "#c69302",
+                      "on-tertiary": "#690000",
+                      "outline": "#ae8882",
+                      "error": "#ffb4ab",
+                      "on-primary-container": "#ffdad4",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary": "#402d00",
+                      "on-secondary-container": "#433000",
+                      "surface-container-highest": "#353534",
+                      "background": "#131313",
+                      "on-background": "#e5e2e1",
+                      "surface-bright": "#3a3939",
+                      "surface-container": "#201f1f",
+                      "outline-variant": "#5e3f3a",
+                      "on-surface": "#e5e2e1",
+                      "inverse-on-surface": "#313030",
+                      "secondary-fixed-dim": "#f6be3b",
+                      "surface-container-low": "#1c1b1b",
+                      "secondary-fixed": "#ffdea0",
+                      "on-secondary-fixed-variant": "#5c4300",
+                      "on-tertiary-fixed-variant": "#920703",
+                      "on-tertiary-fixed": "#410000",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-primary-fixed-variant": "#930000",
+                      "inverse-surface": "#e5e2e1",
+                      "primary-container": "#cc0000",
+                      "on-secondary-fixed": "#261900",
+                      "primary": "#ffb4a8",
+                      "inverse-primary": "#c00000",
+                      "surface-dim": "#131313",
+                      "primary-fixed": "#ffdad4",
+                      "secondary": "#f6be3b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "max-width": "1440px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "stat-lg": ["Space Grotesk"],
+                      "label-caps": ["Space Grotesk"],
+                      "headline-md": ["Libre Caslon Text"],
+                      "headline-xl": ["Libre Caslon Text"],
+                      "body-md": ["Chivo"],
+                      "headline-lg-mobile": ["Libre Caslon Text"],
+                      "body-lg": ["Chivo"],
+                      "headline-lg": ["Libre Caslon Text"]
+              },
+              "fontSize": {
+                      "stat-lg": ["40px", {"lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["14px", {"lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen torchlight">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface border-b border-outline-variant shadow-md">
+<div class="font-headline-md text-headline-md text-primary tracking-widest uppercase">MOLON LABE</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Schedule</a>
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1" href="#">Routines</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Membership</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- Side Navigation Bar -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full w-64 py-8 z-40 bg-surface-container border-r border-outline-variant shadow-2xl">
+<div class="mt-20 px-6 mb-10">
+<div class="flex items-center gap-4 mb-4">
+<img class="w-12 h-12 rounded-full border-2 border-primary" data-alt="A portrait of a battle-hardened Spartan warrior with a groomed beard and intense gaze, wearing a dark leather and bronze breastplate. The lighting is dramatic and high-contrast, casting deep shadows against a dark stone temple background. The overall aesthetic is epic and cinematic, dominated by deep blacks, charcoal greys, and warm bronze metallic glints." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa3BgfoalXMkhYDmWS_W8z_UNFmTZvmZXfCngLjbKTuEszq0k-aZ15IBvxBfpYPFhF3WTp0HrVXXqwYI5H-U0TN4EYoZeJeuszIYrb7YvnUEWmedVoPeERaj4407LLexBVKFWViZMCH_EiF-j4F70O2NbsndSVqQz_pQ6jDmArxY0UQoLyVCzbfO2rYtr94FprDLBY5QfaywK0yubePF1aAF3jRug-byY16CORskWKNyb-QQ4GZfGAD24c97KT_yHbIpJcxnGRN3GX">
+<div>
+<h3 class="font-headline-md text-[18px] text-primary leading-none">STRATEGOS</h3>
+<p class="font-label-caps text-[10px] text-on-surface-variant">LEONIDAS I</p>
+</div>
+</div>
+<button class="w-full metallic-button py-3 px-4 rounded font-label-caps text-white text-[12px] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="fitness_center">fitness_center</span>
+                LOG WORKOUT
+            </button>
+</div>
+<nav class="flex-grow flex flex-col gap-1">
+<a class="flex items-center gap-4 px-6 py-3 font-label-caps text-on-surface-variant hover:bg-surface-bright mx-2 rounded-lg transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+                Command
+            </a>
+<a class="flex items-center gap-4 px-6 py-3 font-label-caps bg-primary-container text-on-primary-container mx-2 rounded-lg transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+                Phalanx
+            </a>
+<a class="flex items-center gap-4 px-6 py-3 font-label-caps text-on-surface-variant hover:bg-surface-bright mx-2 rounded-lg transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                Scrolls
+            </a>
+<a class="flex items-center gap-4 px-6 py-3 font-label-caps text-on-surface-variant hover:bg-surface-bright mx-2 rounded-lg transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+                The Forge
+            </a>
+<a class="flex items-center gap-4 px-6 py-3 font-label-caps text-on-surface-variant hover:bg-surface-bright mx-2 rounded-lg transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+                Council
+            </a>
+</nav>
+<div class="px-2 mt-auto flex flex-col gap-1">
+<div class="spear-divider mx-4 my-4 opacity-30"></div>
+<a class="flex items-center gap-4 px-6 py-3 font-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-4 px-6 py-3 font-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Exit
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-32 pb-20 px-margin-mobile md:px-margin-desktop min-h-screen">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div class="max-w-2xl">
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-2">FORGE YOUR LEGACY</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">The phalanx is only as strong as its weakest shield. Select your training regimen and prepare for glory.</p>
+</div>
+<button class="metallic-button px-8 py-4 rounded font-label-caps text-white flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                NEW ROUTINE
+            </button>
+</header>
+<!-- Search and Filter Bar -->
+<div class="stone-slab rounded-xl mb-12 p-6 flex flex-col md:flex-row gap-6 items-center">
+<div class="relative w-full md:w-1/3">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="carved-input w-full pl-12 pr-4 py-3 rounded text-on-surface font-body-md" placeholder="Search Scrolls..." type="text">
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<button class="bg-surface-variant/30 border border-outline-variant px-6 py-2 rounded-full font-label-caps text-[12px] text-primary">ALL FEATS</button>
+<button class="bg-surface-variant/10 border border-outline-variant/30 px-6 py-2 rounded-full font-label-caps text-[12px] text-on-surface-variant hover:border-primary transition-colors">FAVORITES</button>
+<button class="bg-surface-variant/10 border border-outline-variant/30 px-6 py-2 rounded-full font-label-caps text-[12px] text-on-surface-variant hover:border-primary transition-colors">RECENT</button>
+</div>
+</div>
+<!-- Categories Grid -->
+<section class="space-y-16">
+<!-- Category: Fuerza (Strength) -->
+<div>
+<div class="flex items-center gap-4 mb-8">
+<h2 class="font-headline-lg text-headline-lg text-primary">FUERZA</h2>
+<div class="flex-grow spear-divider opacity-50"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
+<!-- Routine Card 1 -->
+<div class="stone-slab gold-inlay p-8 rounded-lg flex flex-col min-h-[400px] group transition-all hover:scale-[1.02]">
+<div class="absolute top-0 right-0 w-32 h-32 meander-pattern pointer-events-none"></div>
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-caps text-[12px] text-secondary border border-secondary/30 px-3 py-1 rounded">ELITE</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">THE AGOGE PRESS</h3>
+<ul class="space-y-3 mb-8 flex-grow">
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="double_arrow">double_arrow</span>
+                                Heavy Barbell Squats (5x5)
+                            </li>
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="double_arrow">double_arrow</span>
+                                Overhead Military Press
+                            </li>
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="double_arrow">double_arrow</span>
+                                Weighted Pull-ups
+                            </li>
+</ul>
+<div class="flex gap-4 mt-auto">
+<button class="flex-grow metallic-button py-3 rounded font-label-caps text-white">SELECT</button>
+<button class="p-3 bg-surface-variant/30 border border-outline-variant rounded hover:border-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Routine Card 2 -->
+<div class="stone-slab p-8 rounded-lg flex flex-col min-h-[400px] transition-all hover:border-primary/50">
+<div class="flex justify-between items-start mb-6">
+<span class="material-symbols-outlined text-outline text-4xl" data-icon="weight">weight</span>
+<span class="font-label-caps text-[12px] text-on-surface-variant border border-outline-variant px-3 py-1 rounded">VETERAN</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">MERCENARY MASS</h3>
+<ul class="space-y-3 mb-8 flex-grow">
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="double_arrow">double_arrow</span>
+                                Dumbbell Bench Press
+                            </li>
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="double_arrow">double_arrow</span>
+                                Barbell Rows (Pendlay)
+                            </li>
+</ul>
+<div class="flex gap-4 mt-auto">
+<button class="flex-grow metallic-button py-3 rounded font-label-caps text-white">SELECT</button>
+<button class="p-3 bg-surface-variant/30 border border-outline-variant rounded hover:border-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Image Focal Card -->
+<div class="relative overflow-hidden rounded-lg min-h-[400px] flex items-end p-8 stone-slab border-none">
+<img class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700" data-alt="A massive, weathered stone weight being lifted in a dimly lit, ancient stone gym. Dust motes dance in single beams of dramatic torchlight. The overall mood is intense and disciplined, with a color palette of deep umber, iron grey, and flickers of orange light. The scene emphasizes raw power and historical grit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPicmZBXSynaAUVi5UYbIrbX9au9yCFFhIU-29ENJ8TkGDE-a8h8SqC7UHRg2t3tKOfca3LImpaiDuvjZvyMcWUnc3xzaaYLDT5Wq1mlScqe79rIwMeG1uqMHPkc8LtcYV9Ax8aAjVIk_iNHaLcbDmQNHUiE_kXhjrtCTRlJ9Un2bVW0k4FFlI4CBGVAeDyCVcCvHjNK0P5Ehxbp6OaTjqWIv9wn-jQpV0R7qhZxyiTStjgtQh9uw4WhEZyWVUUsQbgwEAcM1zyQ0n">
+<div class="relative z-10 w-full">
+<p class="font-label-caps text-primary mb-2">WISDOM OF THE ELDERS</p>
+<h3 class="font-headline-md text-headline-md text-white mb-4">PEAK POWER PROTOCOL</h3>
+<button class="w-full bg-white/10 backdrop-blur-md border border-white/20 py-3 rounded font-label-caps text-white hover:bg-white/20 transition-all">VIEW DETAILS</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Category: Resistencia (Endurance) -->
+<div>
+<div class="flex items-center gap-4 mb-8">
+<h2 class="font-headline-lg text-headline-lg text-secondary">RESISTENCIA</h2>
+<div class="flex-grow spear-divider opacity-50"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Routine Card 3 (Endurance) -->
+<div class="stone-slab p-8 rounded-lg border-l-4 border-l-secondary flex flex-col md:flex-row gap-8">
+<div class="md:w-1/3">
+<div class="aspect-square bg-surface-container rounded flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-6xl text-secondary" data-icon="timer">timer</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-caps text-[10px]">
+<span class="text-on-surface-variant">INTENSITY</span>
+<span class="text-secondary">85%</span>
+</div>
+<div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+<div class="flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">MARATHON OF MARATHON</h3>
+<p class="text-on-surface-variant mb-6">High-volume conditioning designed for the relentless warrior. No rest until victory.</p>
+<div class="flex flex-wrap gap-3 mb-8">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[12px] font-label-caps text-on-surface-variant">60 MINS</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[12px] font-label-caps text-on-surface-variant">CALISTHENICS</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[12px] font-label-caps text-on-surface-variant">HIIT</span>
+</div>
+<div class="flex gap-4 mt-auto">
+<button class="px-8 metallic-button py-3 rounded font-label-caps text-white">COMMENCE</button>
+<button class="flex-grow bg-surface-variant/20 border border-outline-variant py-3 rounded font-label-caps text-on-surface-variant hover:text-primary transition-colors">EDIT SCROLL</button>
+</div>
+</div>
+</div>
+<!-- Routine Card 4 (Endurance) -->
+<div class="stone-slab p-8 rounded-lg border-l-4 border-l-secondary flex flex-col md:flex-row gap-8">
+<div class="md:w-1/3">
+<div class="aspect-square bg-surface-container rounded flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-6xl text-secondary" data-icon="directions_run">directions_run</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-caps text-[10px]">
+<span class="text-on-surface-variant">INTENSITY</span>
+<span class="text-secondary">70%</span>
+</div>
+<div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 70%"></div>
+</div>
+</div>
+</div>
+<div class="flex-grow flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">THERMOPYLAE TREK</h3>
+<p class="text-on-surface-variant mb-6">Steady-state endurance to build a base that can withstand any siege.</p>
+<div class="flex flex-wrap gap-3 mb-8">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[12px] font-label-caps text-on-surface-variant">90 MINS</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[12px] font-label-caps text-on-surface-variant">CARDIO</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[12px] font-label-caps text-on-surface-variant">ZONE 2</span>
+</div>
+<div class="flex gap-4 mt-auto">
+<button class="px-8 metallic-button py-3 rounded font-label-caps text-white">COMMENCE</button>
+<button class="flex-grow bg-surface-variant/20 border border-outline-variant py-3 rounded font-label-caps text-on-surface-variant hover:text-primary transition-colors">EDIT SCROLL</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Category: Combate (Combat) -->
+<div>
+<div class="flex items-center gap-4 mb-8">
+<h2 class="font-headline-lg text-headline-lg text-error">COMBATE</h2>
+<div class="flex-grow spear-divider opacity-50"></div>
+</div>
+<div class="stone-slab rounded-xl overflow-hidden border-error/20">
+<table class="w-full text-left font-body-md border-collapse">
+<thead>
+<tr class="bg-surface-container-highest border-b border-outline-variant">
+<th class="px-8 py-4 font-label-caps text-on-surface">WARRIOR FEAT</th>
+<th class="px-8 py-4 font-label-caps text-on-surface">DISCIPLINE</th>
+<th class="px-8 py-4 font-label-caps text-on-surface">DURATION</th>
+<th class="px-8 py-4 font-label-caps text-on-surface text-right">ACTION</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-error/5 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-error/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="swords">swords</span>
+</div>
+<div>
+<div class="font-headline-md text-[18px] text-on-surface">SHIELD BASH DRILLS</div>
+<div class="text-[12px] text-on-surface-variant">High impact reactive training</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant">Mixed Arts</td>
+<td class="px-8 py-6 text-on-surface-variant">45 Mins</td>
+<td class="px-8 py-6 text-right">
+<button class="bg-error px-6 py-2 rounded font-label-caps text-on-error hover:bg-error/80 transition-all">SELECT</button>
+</td>
+</tr>
+<tr class="hover:bg-error/5 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-error/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="sports_kabaddi">sports_kabaddi</span>
+</div>
+<div>
+<div class="font-headline-md text-[18px] text-on-surface">PANKRATION GRAPPLE</div>
+<div class="text-[12px] text-on-surface-variant">Ground mastery and leverage</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant">Grappling</td>
+<td class="px-8 py-6 text-on-surface-variant">60 Mins</td>
+<td class="px-8 py-6 text-right">
+<button class="bg-error px-6 py-2 rounded font-label-caps text-on-error hover:bg-error/80 transition-all">SELECT</button>
+</td>
+</tr>
+<tr class="hover:bg-error/5 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-error/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="boxer">sports_martial_arts</span>
+</div>
+<div>
+<div class="font-headline-md text-[18px] text-on-surface">SPARTAN STRIKE</div>
+<div class="text-[12px] text-on-surface-variant">Precision and explosive power</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant">Striking</td>
+<td class="px-8 py-6 text-on-surface-variant">30 Mins</td>
+<td class="px-8 py-6 text-right">
+<button class="bg-error px-6 py-2 rounded font-label-caps text-on-error hover:bg-error/80 transition-all">SELECT</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Section -->
+<footer class="w-full py-unit flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-4 bg-surface-container-lowest border-t border-outline-variant">
+<div class="font-label-caps text-label-caps text-primary">MOLON LABE GYM</div>
+<div class="font-body-md text-body-md text-on-surface-variant">© 480 BC MOLON LABE GYM. VICTORY OR DEATH.</div>
+<div class="flex gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-opacity" href="#">Honor Code</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-opacity" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-opacity" href="#">Privacy</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions for stone cards
+        document.querySelectorAll('.stone-slab').forEach(slab => {
+            slab.addEventListener('mousemove', (e) => {
+                const rect = slab.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                slab.style.setProperty('--mouse-x', `${x}px`);
+                slab.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Add active states to buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+        });
+    </script>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

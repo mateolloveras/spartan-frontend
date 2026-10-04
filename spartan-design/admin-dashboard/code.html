@@ -1,0 +1,398 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MOLON LABE | Strategic Command</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Libre+Caslon+Text:wght@400;700&amp;family=Chivo:wght@300;400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .spear-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #ae8882 50%, transparent 100%);
+            position: relative;
+            margin: 2rem 0;
+        }
+        .spear-divider::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 10px solid #ae8882;
+        }
+        .gold-border {
+            border: 1px solid #c69302;
+            box-shadow: inset 0 0 10px rgba(198, 147, 2, 0.1);
+        }
+        .blood-gradient {
+            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+        }
+        .stone-texture {
+            background-color: #131313;
+            background-image: url("https://www.transparenttextures.com/patterns/dark-matter.png");
+        }
+        .etched-input {
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0e0e0e; }
+        ::-webkit-scrollbar-thumb { background: #5e3f3a; border-radius: 4px; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#ffb4a8",
+                    "tertiary-fixed": "#ffdad4",
+                    "on-error": "#690005",
+                    "on-surface-variant": "#e8bdb6",
+                    "tertiary-fixed-dim": "#ffb4a8",
+                    "surface": "#131313",
+                    "on-primary": "#690000",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-variant": "#353534",
+                    "tertiary-container": "#bd2d1f",
+                    "primary-fixed-dim": "#ffb4a8",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#ffdad4",
+                    "tertiary": "#ffb4a8",
+                    "on-primary-fixed": "#410000",
+                    "secondary-container": "#c69302",
+                    "on-tertiary": "#690000",
+                    "outline": "#ae8882",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#ffdad4",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary": "#402d00",
+                    "on-secondary-container": "#433000",
+                    "surface-container-highest": "#353534",
+                    "background": "#131313",
+                    "on-background": "#e5e2e1",
+                    "surface-bright": "#3a3939",
+                    "surface-container": "#201f1f",
+                    "outline-variant": "#5e3f3a",
+                    "on-surface": "#e5e2e1",
+                    "inverse-on-surface": "#313030",
+                    "secondary-fixed-dim": "#f6be3b",
+                    "surface-container-low": "#1c1b1b",
+                    "secondary-fixed": "#ffdea0",
+                    "on-secondary-fixed-variant": "#5c4300",
+                    "on-tertiary-fixed-variant": "#920703",
+                    "on-tertiary-fixed": "#410000",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-primary-fixed-variant": "#930000",
+                    "inverse-surface": "#e5e2e1",
+                    "primary-container": "#cc0000",
+                    "on-secondary-fixed": "#261900",
+                    "primary": "#ffb4a8",
+                    "inverse-primary": "#c00000",
+                    "surface-dim": "#131313",
+                    "primary-fixed": "#ffdad4",
+                    "secondary": "#f6be3b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "max-width": "1440px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "stat-lg": ["Space Grotesk"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Libre Caslon Text"],
+                    "headline-xl": ["Libre Caslon Text"],
+                    "body-md": ["Chivo"],
+                    "headline-lg-mobile": ["Libre Caslon Text"],
+                    "body-lg": ["Chivo"],
+                    "headline-lg": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                    "stat-lg": ["40px", {"lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["14px", {"lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background stone-texture min-h-screen">
+<!-- SideNavBar Shell -->
+<nav class="hidden lg:flex flex-col fixed left-0 top-0 h-full w-64 py-8 z-40 bg-surface-container border-r border-outline-variant shadow-2xl">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md text-primary">STRATEGOS</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70">LEONIDAS I</p>
+</div>
+<div class="flex-1 flex flex-col gap-2">
+<!-- Command (Active) -->
+<a class="bg-primary-container text-on-primary-container rounded-lg mx-2 my-1 flex items-center px-4 py-3 transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="font-label-caps text-label-caps">Command</span>
+</a>
+<!-- Phalanx -->
+<a class="text-on-surface-variant hover:text-primary mx-2 my-1 flex items-center px-4 py-3 hover:bg-surface-bright transition-all" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps">Phalanx</span>
+</a>
+<!-- Scrolls -->
+<a class="text-on-surface-variant hover:text-primary mx-2 my-1 flex items-center px-4 py-3 hover:bg-surface-bright transition-all" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="description">description</span>
+<span class="font-label-caps text-label-caps">Scrolls</span>
+</a>
+<!-- The Forge -->
+<a class="text-on-surface-variant hover:text-primary mx-2 my-1 flex items-center px-4 py-3 hover:bg-surface-bright transition-all" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-caps text-label-caps">The Forge</span>
+</a>
+<!-- Council -->
+<a class="text-on-surface-variant hover:text-primary mx-2 my-1 flex items-center px-4 py-3 hover:bg-surface-bright transition-all" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-label-caps text-label-caps">Council</span>
+</a>
+</div>
+<div class="px-4 mt-auto pt-6 flex flex-col gap-2">
+<button class="blood-gradient text-white py-3 px-4 rounded-lg font-label-caps text-label-caps gold-border shadow-lg flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span> LOG WORKOUT
+            </button>
+<a class="text-on-surface-variant hover:text-primary flex items-center px-4 py-2 mt-4 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+<a class="text-on-surface-variant hover:text-primary flex items-center px-4 py-2 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="logout">logout</span>
+<span class="font-label-caps text-label-caps">Exit</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 p-margin-mobile md:p-margin-desktop min-h-screen">
+<!-- Top Header -->
+<header class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tighter">WAR ROOM</h2>
+<p class="font-body-lg text-body-lg text-secondary-fixed">Status of the Laconia Hegemony</p>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-outline">CURRENT EPOCH</p>
+<p class="font-stat-lg text-stat-lg text-primary">480 BC</p>
+</div>
+</div>
+</header>
+<!-- KPI Grid: The Great Feats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-12">
+<!-- Total Warriors -->
+<div class="bg-surface-container-high gold-border p-8 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl" data-icon="shield">shield</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">TOTAL WARRIORS</p>
+<h3 class="font-stat-lg text-stat-lg text-white mb-4">300,412</h3>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+<span class="font-body-md text-body-md">+12% Since Last Siege</span>
+</div>
+</div>
+<!-- Treasury -->
+<div class="bg-surface-container-high gold-border p-8 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl" data-icon="account_balance">account_balance</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">TREASURY REVENUE</p>
+<h3 class="font-stat-lg text-stat-lg text-secondary mb-4">842K <span class="text-body-md font-normal opacity-60">Drachmae</span></h3>
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="payments">payments</span>
+<span class="font-body-md text-body-md">Healthy Tributary Flow</span>
+</div>
+</div>
+<!-- Garrison -->
+<div class="bg-surface-container-high gold-border p-8 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl" data-icon="military_tech">military_tech</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">GARRISON STRENGTH</p>
+<h3 class="font-stat-lg text-stat-lg text-tertiary mb-4">1,240 <span class="text-body-md font-normal opacity-60">Staff</span></h3>
+<div class="flex items-center gap-2 text-tertiary">
+<span class="material-symbols-outlined text-sm" data-icon="verified">verified</span>
+<span class="font-body-md text-body-md">98% Deployment Readiness</span>
+</div>
+</div>
+</div>
+<div class="spear-divider"></div>
+<!-- Management Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Training Intensity Chart (Large) -->
+<div class="md:col-span-8 bg-surface-container p-8 rounded-xl border border-outline-variant relative h-[400px]">
+<div class="flex justify-between items-center mb-8">
+<h4 class="font-headline-md text-headline-md text-on-surface">TRAINING INTENSITY</h4>
+<div class="flex gap-4">
+<button class="font-label-caps text-label-caps text-primary border-b border-primary">7 DAYS</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface">30 DAYS</button>
+</div>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="flex items-end justify-between h-48 gap-2 px-4">
+<div class="w-full blood-gradient opacity-20 rounded-t h-1/4"></div>
+<div class="w-full blood-gradient opacity-40 rounded-t h-2/4"></div>
+<div class="w-full blood-gradient opacity-60 rounded-t h-3/4"></div>
+<div class="w-full blood-gradient rounded-t h-full shadow-[0_0_20px_rgba(204,0,0,0.4)]"></div>
+<div class="w-full blood-gradient opacity-80 rounded-t h-5/6"></div>
+<div class="w-full blood-gradient opacity-50 rounded-t h-3/5"></div>
+<div class="w-full blood-gradient opacity-30 rounded-t h-2/5"></div>
+</div>
+<div class="mt-8 flex justify-between font-label-caps text-label-caps text-outline opacity-50">
+<span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+</div>
+</div>
+<!-- Operations Console -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-highest p-6 rounded-xl border border-outline-variant etched-input">
+<h5 class="font-label-caps text-label-caps text-primary mb-4">DEPLOY ORDERS</h5>
+<div class="flex flex-col gap-3">
+<button class="w-full py-3 bg-surface text-on-surface font-label-caps text-label-caps border border-outline-variant flex items-center justify-center gap-2 hover:border-primary transition-all">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span> GLOBAL BROADCAST
+                        </button>
+<button class="w-full py-3 bg-surface text-on-surface font-label-caps text-label-caps border border-outline-variant flex items-center justify-center gap-2 hover:border-primary transition-all">
+<span class="material-symbols-outlined" data-icon="lock_open">lock_open</span> UNLOCK ARMORY
+                        </button>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant">
+<h5 class="font-label-caps text-label-caps text-secondary mb-4">PHALANX INTEGRITY</h5>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1 font-label-caps text-[10px] text-outline">
+<span>EQUIPMENT WEAR</span>
+<span>12%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full blood-gradient" style="width: 12%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1 font-label-caps text-[10px] text-outline">
+<span>STAFF FATIGUE</span>
+<span>45%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full blood-gradient" style="width: 45%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="spear-divider"></div>
+<!-- Recent Skirmishes (Table) -->
+<section class="bg-surface-container rounded-xl overflow-hidden border border-outline-variant mb-20">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h4 class="font-headline-md text-headline-md text-on-surface">WARRIOR ROSTER</h4>
+<div class="relative">
+<input class="bg-surface border-b border-outline-variant focus:border-primary outline-none px-4 py-2 font-body-md text-body-md etched-input min-w-[300px]" placeholder="Search Scrolls..." type="text">
+<span class="material-symbols-outlined absolute right-2 top-2 text-outline" data-icon="search">search</span>
+</div>
+</div>
+<table class="w-full text-left font-body-md">
+<thead>
+<tr class="bg-surface-variant/30 text-outline font-label-caps text-[12px]">
+<th class="px-6 py-4">WARRIOR</th>
+<th class="px-6 py-4">RANK</th>
+<th class="px-6 py-4">GLORY (XP)</th>
+<th class="px-6 py-4">STATUS</th>
+<th class="px-6 py-4 text-right">COMMANDS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-6 py-4 flex items-center gap-4">
+<img class="w-10 h-10 rounded-full border border-primary grayscale group-hover:grayscale-0 transition-all" data-alt="A portrait of a weathered, bearded man with intense eyes, wearing dark Spartan-inspired training gear. The background is a dim, high-contrast gym with dramatic overhead lighting. The visual style is cinematic and powerful, using a palette of deep blacks and sharp metallic highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPFA_Iqx0sASGE1sxfeTbH2iStsVOHR_KnPO8xJ08Cuwkc2437p8LqmlBmMhBmvTUwCblfsQhwiAcOLxVRopwjXX0na196yA0wQRb2q_fRubU-N7CYamPjOAMHtnht-tUgi_PNcv-wbdP8ajYZW-ax3n7kS_v9Yz6WfCUwfCayQYSgbAJ4TFm_MdoVMcbedDPcrSyWtS4tdidwwoUOTBdZJ7FsP_2g6DRWkN7OQKVvUvcFNdKiiAF64AOME7xKLUGgFLc2r3D96C9C">
+<div>
+<p class="text-on-surface font-bold">Theron of Lacedaemon</p>
+<p class="text-xs text-outline">theron@sparta.gym</p>
+</div>
+</td>
+<td class="px-6 py-4 font-label-caps text-label-caps">Hoplyte</td>
+<td class="px-6 py-4">24,500 XP</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] rounded border border-primary/20">IN COMBAT</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-6 py-4 flex items-center gap-4">
+<img class="w-10 h-10 rounded-full border border-outline grayscale group-hover:grayscale-0 transition-all" data-alt="A powerful male profile in low light, capturing a look of extreme focus and discipline. The lighting creates a rim-light effect on his skin, suggesting an atmosphere of intense physical exertion. The colors are muted, dominated by shadows and warm gold highlights from an unseen torch." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9h1eCfG0k_m8gN3ONgMt2hN_H9xbUe2ec2GUFNkzWOenmy8V9IjuWmPoOBu8KU5cCfj42fxltR1Cf3DE-oxH7Irbe_--QKKaq7PisxsAin3Wwow2zT2405Xko8ZqKC7EPtRLjcqw69I4vAzw5ebfOEo2HXpzSxrXdl4TEzO0cfR-9-qnCZq2V9VdAy1p00u5fQu6KM-oQ384MKNyNgfogwRHVksJOk7YUC1ux-NtAXPt5ItYpEdh0K06VC8Qi9wlkNLkBM7AS0a0z">
+<div>
+<p class="text-on-surface font-bold">Xander the Swift</p>
+<p class="text-xs text-outline">xander@sparta.gym</p>
+</div>
+</td>
+<td class="px-6 py-4 font-label-caps text-label-caps">Scout</td>
+<td class="px-6 py-4">12,100 XP</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-variant text-outline text-[10px] rounded border border-outline/20">RECOVERING</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-4 bg-surface-container-low text-center">
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary tracking-widest transition-colors">VIEW ALL 300,412 WARRIORS</button>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="lg:ml-64 w-auto py-unit flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-4 bg-surface-container-lowest border-t border-outline-variant">
+<div class="font-label-caps text-label-caps text-primary tracking-[0.3em]">MOLON LABE</div>
+<div class="font-body-md text-body-md text-on-surface-variant">© 480 BC MOLON LABE GYM. VICTORY OR DEATH.</div>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary font-body-md text-body-md transition-opacity" href="#">Honor Code</a>
+<a class="text-on-surface-variant hover:text-primary font-body-md text-body-md transition-opacity" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary font-body-md text-body-md transition-opacity" href="#">Privacy</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions for hovering gold elements
+        document.querySelectorAll('.gold-border').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(198, 147, 2, 0.05) 0%, transparent 70%), #2a2a2a`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.background = '#2a2a2a';
+            });
+        });
+    </script>
+</body></html>
