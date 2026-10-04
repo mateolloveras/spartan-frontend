@@ -63,6 +63,9 @@ Cada carpeta tiene `code.html` (diseño completo) y `screen.png` (captura).
 - Variables de entorno en `src/environments/environment.ts`
 - Backend corre en `http://localhost:5000/api` en desarrollo
 
+## Forma de trabajo
+Ambos integrantes del equipo trabajan en ambos repos. Cada uno se encarga de una feature completa (frontend + backend) por vez. Al arrancar una tarea nueva, verificar si hay cambios en el repo del compañero con `git pull`.
+
 ## Backend
 El repo del backend es `spartan-backend/` (mismo nivel que este repo).
 Swagger disponible en `http://localhost:5000/swagger` cuando está levantado.
